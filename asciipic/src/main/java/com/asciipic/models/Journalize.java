@@ -11,7 +11,6 @@ import java.util.Date;
 @Entity
 @Table(name = "journalize")
 public class Journalize {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
