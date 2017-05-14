@@ -1,7 +1,7 @@
-package com.asciipic.test.controllers;
+package com.asciipic.controllers;
 
-import com.asciipic.test.models.TestModel;
-import com.asciipic.test.services.TestModelService;
+import com.asciipic.models.User;
+import com.asciipic.services.TestModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,18 +21,18 @@ public class TestModelController {
     private TestModelService service;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<TestModel>> get() {
-        List<TestModel> students = this.service.getAll();
+    public ResponseEntity<List<User>> get() {
+        List<User> students = this.service.getAll();
         if (students.isEmpty()) {
-            return new ResponseEntity<List<TestModel>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<TestModel>>(students, HttpStatus.OK);
+        return new ResponseEntity<List<User>>(students, HttpStatus.OK);
     }
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<TestModel> addStudent(@RequestBody TestModel student) {
-        TestModel savedStudent = this.service.save(student);
-        return new ResponseEntity<TestModel>(savedStudent, HttpStatus.CREATED);
+    public ResponseEntity<User> addStudent(@RequestBody User student) {
+        User savedStudent = this.service.save(student);
+        return new ResponseEntity<User>(savedStudent, HttpStatus.CREATED);
     }
 }

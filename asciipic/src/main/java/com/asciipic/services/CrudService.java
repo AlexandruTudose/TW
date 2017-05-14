@@ -1,4 +1,4 @@
-package com.asciipic.test.services;
+package com.asciipic.services;
 
 
 import java.util.List;

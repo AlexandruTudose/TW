@@ -1,7 +1,7 @@
-package com.asciipic.test.services;
+package com.asciipic.services;
 
-import com.asciipic.test.models.TestModel;
-import com.asciipic.test.repositories.TestModelRepository;
+import com.asciipic.models.User;
+import com.asciipic.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,20 +10,20 @@ import java.util.List;
 @Service
 public class TestModelServiceImpl implements TestModelService {
     @Autowired
-    private TestModelRepository repository;
+    private UserRepository repository;
 
     @Override
-    public TestModel save(TestModel entity) {
+    public User save(User entity) {
         return this.repository.save(entity);
     }
 
     @Override
-    public List<TestModel> getAll() {
+    public List<User> getAll() {
         return this.repository.findAll();
     }
 
     @Override
-    public TestModel getById(Long id) {
+    public User getById(Long id) {
         return this.repository.findOne(id);
     }
 
