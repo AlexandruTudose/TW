@@ -41,14 +41,11 @@ public class Image {
     @Column(name = "is_saved")
     private boolean isSaved;
 
-    @OneToMany
-    @JoinColumn(name = "image_id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "image", cascade = CascadeType.ALL)
     private List<Tag> tags;
 
-    @OneToOne
-    @JoinColumn(name = "image_id")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "image", cascade = CascadeType.ALL)
     private SavedImage image;
-
 
     public long getId() {
         return id;

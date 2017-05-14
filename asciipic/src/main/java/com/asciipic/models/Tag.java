@@ -1,37 +1,61 @@
 package com.asciipic.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Alexandru on 5/14/2017.
  */
 @Entity
 @Table(name = "tegs")
-public class Tag {
-    @Id
+public class Tag implements Serializable {
+    @EmbeddedId
+    private TagId id;
+
+    @MapsId("imageId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "image_id", referencedColumnName = "id", nullable = false, unique = true)
+    private Image image;
+
+    public TagId getId() {
+        return id;
+    }
+
+    public void setId(TagId id) {
+        this.id = id;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+}
+
+@Embeddable
+class TagId implements Serializable {
     @Column(name = "image_id")
     long imageId;
-
-    @Id
     @Column(name = "tag_name")
     String tagName;
 
-    public long getImageId() {
-        return imageId;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TagId tagId = (TagId) o;
+
+        if (imageId != tagId.imageId) return false;
+        return tagName.equals(tagId.tagName);
     }
 
-    public void setImageId(long imageId) {
-        this.imageId = imageId;
-    }
-
-    public String getTagName() {
-        return tagName;
-    }
-
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
+    @Override
+    public int hashCode() {
+        int result = (int) (imageId ^ (imageId >>> 32));
+        result = 31 * result + tagName.hashCode();
+        return result;
     }
 }

@@ -1,14 +1,9 @@
 package com.asciipic.services;
 
-
 import java.util.List;
 
-public interface CrudService<T> {
-    T save(T entity);
-
+public interface ReadService<T> {
     List<T> getAll();
 
     T getById(Long id);
-
-    void delete(Long id);
 }

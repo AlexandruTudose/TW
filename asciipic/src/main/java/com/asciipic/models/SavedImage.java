@@ -10,23 +10,27 @@ import java.sql.Blob;
 @Entity
 @Table(name = "saved_images")
 public class SavedImage {
-
     @Id
-    @Column(name = "image_id")
-    private long imageId;
+    @Column(name="image_id")
+    private long id;
+
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "image_id", referencedColumnName = "id", nullable = false, unique = true)
+    private Image image;
+
 
     @NotNull
     @Lob
     @Column(name = "data")
-
     private Blob data;
 
-    public long getImageId() {
-        return imageId;
+    public Image getImage() {
+        return image;
     }
 
-    public void setImageId(long imageId) {
-        this.imageId = imageId;
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public Blob getData() {

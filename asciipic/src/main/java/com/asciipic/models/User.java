@@ -1,14 +1,13 @@
 package com.asciipic.models;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * Created by Alexandru on 5/14/2017.
  */
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

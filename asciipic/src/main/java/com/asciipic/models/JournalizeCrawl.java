@@ -25,7 +25,7 @@ public class JournalizeCrawl {
 
     @NotNull
     @Column(name = "job_id")
-    private long jopId;
+    private long jobId;
 
     @Column(name = "post_date")
     private Date postDate;
@@ -67,12 +67,12 @@ public class JournalizeCrawl {
         this.user = user;
     }
 
-    public long getJopId() {
-        return jopId;
+    public long getJobId() {
+        return jobId;
     }
 
-    public void setJopId(long jopId) {
-        this.jopId = jopId;
+    public void setJobId(long jobId) {
+        this.jobId = jobId;
     }
 
     public Date getPostDate() {
